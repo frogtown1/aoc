@@ -1,4 +1,5 @@
 -module(day01).
+-include_lib("eunit/include/eunit.hrl").
 -export([results/0]).
 
 %% === Wrapper Function =================
@@ -20,6 +21,8 @@ solver_part1(V, [H | _]) when V + H =:= 2020 ->
     V * H;
 solver_part1(V, [_ | T]) ->
     solver_part1(V, T).
+
+
 
 
 
