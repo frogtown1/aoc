@@ -1,5 +1,6 @@
 -module(day01).
 -include_lib("eunit/include/eunit.hrl").
+
 -export([results/0]).
 
 %% === Wrapper Function =================
@@ -11,27 +12,27 @@ results() ->
 
 
 %% === Part 1 ===========================
-part1() -> solver_part1(input_file()).
+part1() -> solver_part1(input_file()),
+hd([{X, Y} || X <- Results, Y <- Results, X + Y == 2020]).
 
-solver_part1([]) -> 0;
-solver_part1([H | T]) -> solver_part1(H, T) + solver_part1(T).
 
-solver_part1(_, []) -> 0;
-solver_part1(V, [H | _]) when V + H =:= 2020 ->
-    V * H;
-solver_part1(V, [_ | T]) ->
-    solver_part1(V, T).
+[A*B || A <- Input, B <- Input, A + B =:= 2020].
 
 
 
 
 
 input_file() ->
-    {ok, Input} = file:read_file(input01),
-    Strings = string:split(Input, "\n", all),
-    Pairs = [string:to_integer(X) || X <- Strings],
+    FilePath = filename:join(["..", "resources", "input01"]).
+
+    {ok, Data}           = file:read_file(FilePath),
+    ParseBinary          = binary:split(Data, <<"\n">>, [global]),
+    ParseBinaryToString  = [ binary_to_list(L) || L <- ParseBinary ],
+    ParseStringToInteger = [ string:to_integer(X) || X <- ParseBinaryToString ],
     {Result, _} = lists:unzip(Pairs),
     Result.
 
 
-
+%% === Unit Tests =======================
+%part1_test() ->
+%    536404 =
