@@ -23,13 +23,13 @@ hd([{X, Y} || X <- Results, Y <- Results, X + Y == 2020]).
 
 
 input_file() ->
-    FilePath = filename:join(["..", "resources", "input01"]).
-
+    FileName             = "input01",
+    FilePath             = filename:join(["..", "resources", FileName]),
     {ok, Data}           = file:read_file(FilePath),
     ParseBinary          = binary:split(Data, <<"\n">>, [global]),
     ParseBinaryToString  = [ binary_to_list(L) || L <- ParseBinary ],
     ParseStringToInteger = [ string:to_integer(X) || X <- ParseBinaryToString ],
-    {Result, _} = lists:unzip(Pairs),
+    {Result, _}          = lists:unzip(ParseStringToInteger),
     Result.
 
 
