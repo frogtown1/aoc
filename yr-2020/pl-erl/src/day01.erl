@@ -1,24 +1,18 @@
 -module(day01).
 -include_lib("eunit/include/eunit.hrl").
 
--export([results/0]).
+-export([input_file/0]).
 
 %% === Wrapper Function =================
-results() ->
-    io:format("Part 1: ~p~n", [part1()]).
+%results() ->
+%    io:format("Part 1: ~p~n", [part1()]).
 
 %% ======================================
 
 
 
 %% === Part 1 ===========================
-part1() -> solver_part1(input_file()),
-hd([{X, Y} || X <- Results, Y <- Results, X + Y == 2020]).
-
-
-[A*B || A <- Input, B <- Input, A + B =:= 2020].
-
-
+%part1() -> solver_part1(input_file()).
 
 
 
@@ -30,7 +24,7 @@ input_file() ->
     ParseBinaryToString  = [ binary_to_list(L) || L <- ParseBinary ],
     ParseStringToInteger = [ string:to_integer(X) || X <- ParseBinaryToString ],
     {Result, _}          = lists:unzip(ParseStringToInteger),
-    Result.
+                           Result.
 
 
 %% === Unit Tests =======================
