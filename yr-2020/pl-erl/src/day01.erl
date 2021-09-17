@@ -1,32 +1,35 @@
+%% @author  Benjamin McGriff
+%% @doc     AoC Day01 Solutions.
+%% @version 0.1
+
 -module(day01).
--include_lib("eunit/include/eunit.hrl").
 
--export([input_file/0]).
-
-%% === Wrapper Function =================
-%results() ->
-%    io:format("Part 1: ~p~n", [part1()]).
-
-%% ======================================
+-export([results/0, ingest_file/1]).
 
 
-
-%% === Part 1 ===========================
-%part1() -> solver_part1(input_file()).
-
-
-
-input_file() ->
-    FileName             = "input01",
-    FilePath             = filename:join(["..", "resources", FileName]),
-    {ok, Data}           = file:read_file(FilePath),
-    ParseBinary          = binary:split(Data, <<"\n">>, [global]),
-    ParseBinaryToString  = [ binary_to_list(L) || L <- ParseBinary ],
-    ParseStringToInteger = [ string:to_integer(X) || X <- ParseBinaryToString ],
-    {Result, _}          = lists:unzip(ParseStringToInteger),
-                           Result.
+results() ->
+    Input = ingest_file("input01"),
+    Input.
+   % io:format("Part 1: ~p~n", [100]),
+   % io:format("Part 2: ~p~n", [400]).
 
 
-%% === Unit Tests =======================
-%part1_test() ->
-%    536404 =
+%% ==================================
+%% Part 1
+
+
+
+%% L = [1721, 979, 366, 299, 675, 1465]
+
+
+%% Ingest input file
+
+ingest_file(FileName) ->
+    FilePath        = filename:join(["..", "resources", FileName]),
+    {ok, Data}      = file:read_file(FilePath),
+    ParsedBinary    = binary:split(Data, <<"\n">>, [global]),
+    BinaryToString  = [ binary_to_list(E)    || E <- ParsedBinary ],
+    StringToInteger = [ string:to_integer(E) || E <- BinaryToString ],
+    {Result, _}     = lists:unzip(StringToInteger),
+                      Result.
+
