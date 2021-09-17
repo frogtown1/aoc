@@ -1,12 +1,9 @@
-%% @author  Benjamin McGriff
+
 %% @doc     AoC Day01 Solutions.
 
 -module(day01).
 
--include_lib("eunit/include/eunit.hrl").
-
 -export([results/0]).
--export([test/0]).
 
 %% ===== Main =====
 -spec results() -> integer().
@@ -61,6 +58,9 @@ ingest_file(FileName) ->
                       Result.
 
 %% ===== Unit Tests =====
+-ifdef(TEST).
+-include_lib("eunit/include/eunit.hrl").
+
 test() ->
     io:format("===== Day01 Test Results =====~n"),
     io:format("Part 1: ~p~n",[part1_test()]),
@@ -74,4 +74,4 @@ part2_test() ->
     SampleInput = [1721, 979, 366, 299, 675, 1456],
     ?assert(241861950 =:= solve_part2(SampleInput)).
 
-
+-endif
