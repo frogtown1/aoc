@@ -64,10 +64,14 @@ ingest_file(FileName) ->
 test() ->
     io:format("===== Day01 Test Results =====~n"),
     io:format("Part 1: ~p~n",[part1_test()]),
-    io:format("Part 2: ~p~n",[ok]).
+    io:format("Part 2: ~p~n",[part2_test()]).
 
 part1_test() ->
     SampleInput = [1721, 979, 366, 299, 675, 1456],
     ?assert(514579 =:= solve_part1(SampleInput)).
+
+part2_test() ->
+    SampleInput = [1721, 979, 366, 299, 675, 1456],
+    ?assert(241861950 =:= solve_part2(SampleInput)).
 
 
