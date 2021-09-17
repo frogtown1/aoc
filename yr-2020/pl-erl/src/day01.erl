@@ -3,7 +3,10 @@
 
 -module(day01).
 
+-include_lib("eunit/include/eunit.hrl").
+
 -export([results/0]).
+-export([test/0]).
 
 %% ===== Main =====
 -spec results() -> integer().
@@ -45,13 +48,7 @@ solve_part2(Input) ->
                                  Int1 + Int2 + Int3 =:= 2020 ],
     Int1 * Int2 * Int3.
 
-
-
-
-
-%% L = [1721, 979, 366, 299, 675, 1465]
-
-
+%% ===== Util =====
 %% Ingest input file
 -spec ingest_file(string()) -> list().
 ingest_file(FileName) ->
@@ -62,5 +59,15 @@ ingest_file(FileName) ->
     StringToInteger = [ string:to_integer(E) || E <- BinaryToString ],
     {Result, _}     = lists:unzip(StringToInteger),
                       Result.
+
+%% ===== Unit Tests =====
+test() ->
+    io:format("===== Day01 Test Results =====~n"),
+    io:format("Part 1: ~p~n",[part1_test()]),
+    io:format("Part 2: ~p~n",[ok]).
+
+part1_test() ->
+    SampleInput = [1721, 979, 366, 299, 675, 1456],
+    ?assert(514579 =:= solve_part1(SampleInput)).
 
 
