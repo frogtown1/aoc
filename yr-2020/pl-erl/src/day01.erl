@@ -1,5 +1,5 @@
-
-%% @doc     AoC Day01 Solutions.
+%% @author Benjamin McGriff
+%% @doc    AoC Day01 Solutions.
 
 -module(day01).
 
