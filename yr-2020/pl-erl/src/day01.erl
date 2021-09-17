@@ -9,14 +9,20 @@
 
 results() ->
     Input = ingest_file("input01"),
-    Input.
-   % io:format("Part 1: ~p~n", [100]),
+    io:format("Part 1: ~p~n", [solver_part1(Input)]).
    % io:format("Part 2: ~p~n", [400]).
 
 
 %% ==================================
 %% Part 1
+solver_part1(Input) -> solver_part1(Input, Input, Input).
 
+solver_part1([H1 | _], [H2 | _], _) when H1 + H2 =:= 2020 ->
+    H1 * H2;
+solver_part1([], [_ | T], Input) ->
+    solver_part1(Input, T, Input);
+solver_part1([_ | T], List, Input) ->
+    solver_part1(T, List, Input).
 
 
 %% L = [1721, 979, 366, 299, 675, 1465]
@@ -32,4 +38,5 @@ ingest_file(FileName) ->
     StringToInteger = [ string:to_integer(E) || E <- BinaryToString ],
     {Result, _}     = lists:unzip(StringToInteger),
                       Result.
+
 
